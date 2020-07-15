@@ -1,0 +1,72 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+html, body, #map {
+  height: 100%;
+  width: 100vw;
+}
+
+.tt-query, .tt-hint {
+	border: 2px solid #CCCCCC;
+	border-radius: 6px;
+	font-size: 14px;
+	height: 12px;
+	line-height: 20px;
+	outline: medium none;
+    padding: 6px 12px;
+    width: 100%;
+}	
+.typeahead:focus {
+	border: 2px solid #0097CF;
+}
+.tt-query {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.tt-hint {
+	color: #999999;
+}
+.tt-menu {
+	background-color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 6px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	margin-top: 10px;
+	padding: 1px 0;
+	width: 200px;
+}
+.tt-suggestion {
+	font-size: 14px;
+	padding: 3px 10px;
+}
+.tt-suggestion:hover {
+	cursor: pointer;
+	background-color: #0097CF;
+	color: #FFFFFF;
+}
+.tt-suggestion p {
+	margin: 0;
+}
+.contentSidebar {
+	margin: 20px;
+}
+.block {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.text {
+	text-align: justify;
+}
+.lineButton {
+	border-bottom: 1px solid gray;
+}
+.lineTop {
+	border-top: 1px solid gray;
+	padding-top: 20px;
+}
+#routeDistance, #routeTime, #routePath {
+	font-weight: bold;
+}
+#myLocation {
+	margin-top: 10px;
+}
