@@ -8,7 +8,7 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_URL, $url);
 $result = curl_exec($ch);
-header("Access-Control-Allow-Origin: https://www.luishromero.com");
+header("Access-Control-Allow-Origin: *");
 curl_close($ch);
 print_r($result);
 

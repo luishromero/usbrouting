@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Calculadora de rutas peatonanes para el campus de la Universidad Simón Bolívar"
+    />
+    <meta name="author" content="Luis Romero" />
+    <title>Cómo Llego USB</title>
+    <!--meta tag facebook share-->
+    <meta
+      property="og:url"
+      content="https://luishromero.com/map/usb-routing.html"
+    />
+    <meta property="og:type" content="Web App" />
+    <meta property="og:title" content="Cómo Llego USB" />
+    <meta
+      property="og:description"
+      content="Calculadora de rutas peatonanes para el campus de la Universidad Simón Bolívar"
+    />
+    <meta
+      property="og:image"
+      content="https://luishromero.com/map/src/img/comollegousb.jpg"
+    />
+    <!--leaflet-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
+    <!--jQuery-->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"
+    ></script>
+    <!--my code-->
+    <link rel="stylesheet" href="src/css/style.css?v=1" />
+    <!--sidebar-->
+    <script src="src/script/leaflet-sidebar.min.js"></script>
+    <link rel="stylesheet" href="src/css/leaflet-sidebar.min.css?v=1" />
+    <!--locate-->
+    <script src="src/script/L.Control.Locate.min.js"></script>
+    <link rel="stylesheet" href="src/css/L.Control.Locate.min.css" />
+    <!--typehead-->
+    <script
+      type="text/javascript"
+      src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"
+    ></script>
+    <!--font-awesome-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-145389589-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-145389589-1");
+    </script>
+  </head>
+
+  <body>
+    <div id="sidebar" class="leaflet-sidebar collapsed">
+      <!-- Nav tabs -->
+      <div class="leaflet-sidebar-tabs">
+        <ul role="tablist">
+          <!-- top aligned tabs -->
+          <li>
+            <a href="#home" role="tab"><i class="fa fa-search"></i></a>
+          </li>
+        </ul>
+        <!-- bottom aligned tabs -->
+        <ul role="tablist">
+          <li title="Home" id="tablist-home-btn">
+            <a><i class="fa fa-home"></i></a>
+          </li>
+        </ul>
+      </div>
+      <!-- Tab panes -->
+      <div class="leaflet-sidebar-content">
+        <div class="leaflet-sidebar-pane" id="home">
+          <h1 class="leaflet-sidebar-header">
+            Cómo llego USB
+            <div class="leaflet-sidebar-close">
+              <i class="fa fa-caret-left"></i>
+            </div>
+          </h1>
+          <div class="contentSidebar">
+            <div class="block lineButton">
+              <p class="text">
+                Esta aplicación le permitirá encontrar el camino más corto para
+                movilizarse a pie dentro de la Universidad Simón Bolívar. A su
+                vez, puede utilizar la herramienta para ubicar edificios,
+                departamentos u oficinas dentro del campus. Se dispone del link
+                <b>bit.ly/comollegousb</b> para facilitar el ingreso a la
+                aplicación
+              </p>
+            </div>
+            <div class="block">
+              <h5>Encontrar una ruta:</h5>
+              <form id="formSearchDirection">
+                <div id="bloodhound">
+                  <div class="form-group">
+                    <label for="direccionFrom">Dirección desde:</label>
+                    <br />
+                    <input
+                      type="text"
+                      class="form-control typeahead from"
+                      id="direccionFrom"
+                      placeholder="Desde"
+                    />
+                    <div
+                      id="myLocation"
+                      class="fa fa-crosshairs btn btn-primary"
+                      title="Desde mi ubicación"
+                    >
+                      Desde mi ubicación
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="direccionTo">Dirección hasta:</label>
+                    <br />
+                    <input
+                      type="text"
+                      class="form-control typeahead to"
+                      id="direccionTo"
+                      placeholder="Hasta"
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    Buscar ruta
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="block lineButton">
+              <p id="routePath"></p>
+              <p>Distancia a caminar: <span id="routeDistance"></span></p>
+              <p>Tiempo de recorrido: <span id="routeTime"></span></p>
+            </div>
+            <div class="block">
+              <h5>Encontrar un lugar:</h5>
+              <form id="formSearchPoint">
+                <div id="bloodhound">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control typeahead pointMarker"
+                      placeholder="Ingrese el nombre del lugar"
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    Encontrar lugar
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="block">
+              <p class="text lineTop">
+                Esta herramienta será paulatinamente mejorada y se ampliará la
+                lista de departamentos y/u oficinas disponibles para la
+                búsqueda.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="map"></div>
+    <script src="src/script/script.js?v=1"></script>
+    <script src="src/script/lugares.js?v=1"></script>
+  </body>
+</html>
