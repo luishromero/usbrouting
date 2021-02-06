@@ -1,0 +1,28 @@
+<featureType>
+  <name>calles_noded_vertices_pgr</name>
+  <nativeName>calles_noded_vertices_pgr</nativeName>
+  <title>calles_noded_vertices_pgr</title>
+  <keywords>
+    <string>features</string>
+    <string>calles_noded_vertices_pgr</string>
+  </keywords>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>-66.897216796875</minx>
+    <maxx>-66.8752899169922</maxx>
+    <miny>10.4031944274902</miny>
+    <maxy>10.4203338623047</maxy>
+    <crs>EPSG:4326</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-66.897216796875</minx>
+    <maxx>-66.8752899169922</maxx>
+    <miny>10.4031944274902</miny>
+    <maxy>10.4203338623047</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <enabled>true</enabled>
+  <store class="dataStore">
+    <name>postgisdb</name>
+  </store>
+</featureType>

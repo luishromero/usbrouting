@@ -1,0 +1,28 @@
+<featureType>
+  <name>campus</name>
+  <nativeName>campus</nativeName>
+  <title>campus</title>
+  <keywords>
+    <string>features</string>
+    <string>campus</string>
+  </keywords>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>-66.8999862670898</minx>
+    <maxx>-66.8742523193359</maxx>
+    <miny>10.4015836715698</miny>
+    <maxy>10.4210472106934</maxy>
+    <crs>EPSG:4326</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-66.8999862670898</minx>
+    <maxx>-66.8742523193359</maxx>
+    <miny>10.4015836715698</miny>
+    <maxy>10.4210472106934</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <enabled>true</enabled>
+  <store class="dataStore">
+    <name>postgisdb</name>
+  </store>
+</featureType>

@@ -1,0 +1,60 @@
+<featureType>
+  <name>sqlviewcalles</name>
+  <nativeName>sqlviewcalles</nativeName>
+  <title>sqlviewcalles</title>
+  <keywords>
+    <string>features</string>
+    <string>sqlviewcalles</string>
+  </keywords>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>-66.8815014382664</minx>
+    <maxx>-66.8811833727162</maxx>
+    <miny>10.4053736445718</miny>
+    <maxy>10.4055856194976</maxy>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-66.8815014382664</minx>
+    <maxx>-66.8811833727162</maxx>
+    <miny>10.4053736445718</miny>
+    <maxy>10.4055856194976</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="JDBC_VIRTUAL_TABLE">
+      <virtualTable>
+        <name>sqlviewcalles</name>
+        <sql>SELECT&#xd;
+ min(r.seq) AS seq,&#xd;
+ e.id,&#xd;
+ e.name,&#xd;
+ sum(e.distance) AS distance,&#xd;
+ST_Collect(e.the_geom) AS geom &#xd;
+ FROM pgr_dijkstra(&apos;SELECT id,source,target,distance AS cost &#xd;
+ FROM calles_noded&apos;,%source%,%target%,false) AS r,calles_noded AS e &#xd;
+ WHERE r.edge=e.id GROUP BY e.id,e.name
+</sql>
+        <escapeSql>false</escapeSql>
+        <geometry>
+          <name>geom</name>
+          <type>LineString</type>
+          <srid>-1</srid>
+        </geometry>
+        <parameter>
+          <name>source</name>
+          <defaultValue>5</defaultValue>
+          <regexpValidator>^[\d]+$</regexpValidator>
+        </parameter>
+        <parameter>
+          <name>target</name>
+          <defaultValue>6</defaultValue>
+          <regexpValidator>^[\d]+$</regexpValidator>
+        </parameter>
+      </virtualTable>
+    </entry>
+  </metadata>
+  <store class="dataStore">
+    <name>postgisdb</name>
+  </store>
+</featureType>

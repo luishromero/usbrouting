@@ -1,0 +1,64 @@
+<featureType>
+  <name>sqlviewvertices</name>
+  <nativeName>sqlviewvertices</nativeName>
+  <title>sqlviewvertices</title>
+  <keywords>
+    <string>features</string>
+    <string>sqlviewvertices</string>
+  </keywords>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>-67.879976817601</minx>
+    <maxx>-65.879976817601</maxx>
+    <miny>9.4098445534905</miny>
+    <maxy>11.4098445534905</maxy>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-67.879976817601</minx>
+    <maxx>-65.879976817601</maxx>
+    <miny>9.4098445534905</miny>
+    <maxy>11.4098445534905</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="JDBC_VIRTUAL_TABLE">
+      <virtualTable>
+        <name>sqlviewvertices</name>
+        <sql>SELECT&#xd;
+  v.id,&#xd;
+  v.the_geom&#xd;
+FROM&#xd;
+  calles_noded_vertices_pgr AS v,&#xd;
+  calles_noded AS e&#xd;
+WHERE&#xd;
+  v.id = (SELECT&#xd;
+            id&#xd;
+          FROM calles_noded_vertices_pgr&#xd;
+          ORDER BY the_geom &lt;-&gt; ST_SetSRID(ST_MakePoint(%x%, %y%), 4326) LIMIT 1)&#xd;
+  AND (e.source = v.id OR e.target = v.id)&#xd;
+GROUP BY v.id, v.the_geom
+</sql>
+        <escapeSql>false</escapeSql>
+        <geometry>
+          <name>the_geom</name>
+          <type>Point</type>
+          <srid>-1</srid>
+        </geometry>
+        <parameter>
+          <name>x</name>
+          <defaultValue>-66.88</defaultValue>
+          <regexpValidator>^[\d\.\+-eE]+$</regexpValidator>
+        </parameter>
+        <parameter>
+          <name>y</name>
+          <defaultValue>10.41</defaultValue>
+          <regexpValidator>^[\d\.\+-eE]+$</regexpValidator>
+        </parameter>
+      </virtualTable>
+    </entry>
+  </metadata>
+  <store class="dataStore">
+    <name>postgisdb</name>
+  </store>
+</featureType>

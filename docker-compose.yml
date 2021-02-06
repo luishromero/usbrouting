@@ -1,0 +1,31 @@
+version: "1.0"
+services:
+  postgresusb:
+    build:
+      context: backend/db
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=usbrouting
+      - POSTGRES_USER=docker
+      - POSTGRES_PASS=docker
+    restart: on-failure
+  geoserverusb:
+    build:
+      context: backend/geoserver
+      dockerfile: Dockerfile
+    ports:
+      - "8600:8080"
+    depends_on:
+      - "postgresusb"
+    restart: on-failure
+  webappusb:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8181:80"
+    depends_on:
+      - "geoserverusb"
+    restart: on-failure

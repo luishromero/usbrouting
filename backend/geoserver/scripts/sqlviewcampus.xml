@@ -1,0 +1,55 @@
+<featureType>
+  <name>sqlviewcampus</name>
+  <nativeName>sqlviewcampus</nativeName>
+  <title>sqlviewcampus</title>
+  <keywords>
+    <string>features</string>
+    <string>sqlviewcampus</string>
+  </keywords>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>-66.8999811132407</minx>
+    <maxx>-66.8742594940328</maxx>
+    <miny>10.4015837111204</miny>
+    <maxy>10.4210468360618</maxy>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-66.8999811132407</minx>
+    <maxx>-66.8742594940328</maxx>
+    <miny>10.4015837111204</miny>
+    <maxy>10.4210468360618</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="JDBC_VIRTUAL_TABLE">
+      <virtualTable>
+        <name>sqlviewcampus</name>
+        <sql>select&#xd;
+nombre, the_geom&#xd;
+from campus&#xd;
+where ST_contains(the_geom,ST_GeomFromText(&apos;POINT(%x% %y%)&apos;,4326))
+</sql>
+        <escapeSql>false</escapeSql>
+        <geometry>
+          <name>the_geom</name>
+          <type>Polygon</type>
+          <srid>-1</srid>
+        </geometry>
+        <parameter>
+          <name>x</name>
+          <defaultValue>-66.880659</defaultValue>
+          <regexpValidator>^[\d\.\+-eE]+$</regexpValidator>
+        </parameter>
+        <parameter>
+          <name>y</name>
+          <defaultValue>10.410326</defaultValue>
+          <regexpValidator>^[\d\.\+-eE]+$</regexpValidator>
+        </parameter>
+      </virtualTable>
+    </entry>
+  </metadata>
+  <store class="dataStore">
+    <name>postgisdb</name>
+  </store>
+</featureType>

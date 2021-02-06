@@ -75,11 +75,11 @@ var targetMarker = L.geoJSON(null);
 
 function getVertexSource(x, y) {
   var url =
-    "./usbrouting/php/vertex.php?lat=" + y + "&lon=" + x;
+    "./src/php/vertex.php?lat=" + y + "&lon=" + x;
   $.ajax({
     dataType: "json",
     url: url,
-    async: false,
+    async: true,
     success: function (data) {
       loadVertexSource(data);
       sourceMarker = L.geoJSON(data);
@@ -95,11 +95,11 @@ function getVertexSource(x, y) {
 
 function getVertexTarget(x, y) {
   var url =
-    "./usbrouting/php/vertex.php?lat=" + y + "&lon=" + x;
+    "./src/php/vertex.php?lat=" + y + "&lon=" + x;
   $.ajax({
     dataType: "json",
     url: url,
-    async: false,
+    async: true,
     success: function (data) {
       loadVertexTarget(data);
       targetMarker = L.geoJSON(data);
@@ -126,14 +126,14 @@ function loadVertexTarget(response) {
 
 function getRoute() {
   var url =
-    "./usbrouting/php/edge.php?source=" +
+    "./src/php/edge.php?source=" +
     source +
     "&target=" +
     target;
   $.ajax({
     dataType: "json",
     url: url,
-    async: false,
+    async: true,
     success: function (data) {
       map.removeLayer(pathLayer);
       pathLayer = L.geoJSON(data);
@@ -449,14 +449,14 @@ var isInside;
 
 function getPositionCampus(x, y) {
   var url =
-    "./usbrouting/php/campus.php?lat=" +
+    "./src/php/campus.php?lat=" +
     y +
     "&lon=" +
     x;
   $.ajax({
     dataType: "json",
     url: url,
-    async: false,
+    async: true,
     success: function (data) {
       isInside = data.crs;
     },

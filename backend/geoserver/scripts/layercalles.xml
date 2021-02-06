@@ -1,0 +1,28 @@
+<featureType>
+  <name>calles</name>
+  <nativeName>calles_noded</nativeName>
+  <title>calles_noded</title>
+  <keywords>
+    <string>features</string>
+    <string>calles_noded</string>
+  </keywords>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>-66.8987121582031</minx>
+    <maxx>-66.8752899169922</maxx>
+    <miny>10.4031944274902</miny>
+    <maxy>10.4204254150391</maxy>
+    <crs>EPSG:4326</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-66.8987121582031</minx>
+    <maxx>-66.8752899169922</maxx>
+    <miny>10.4031944274902</miny>
+    <maxy>10.4204254150391</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <enabled>true</enabled>
+  <store class="dataStore">
+    <name>postgisdb</name>
+  </store>
+</featureType>
