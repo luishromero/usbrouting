@@ -5,8 +5,11 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
     create extension pgrouting;
 EOSQL
 
-ogr2ogr -select 'nombre' -lco GEOMETRY_NAME=the_geom -lco FID=id -f PostgreSQL PG:"dbname=usbrouting user=docker" -nln campus campus.geojson
-ogr2ogr -select 'nombre, oneway, distancia' -lco GEOMETRY_NAME=the_geom -lco FID=id -f PostgreSQL PG:"dbname=usbrouting user=docker" -nln calles calles.geojson
+ogr2ogr -f "PostgreSQL" "PG:user=docker dbname=usbrouting password=docker" "/docker-entrypoint-initdb.d/campus.geojson" -lco GEOMETRY_NAME=the_geom -lco FID=id -lco PRECISION=no -nln campus -overwrite
+ogr2ogr -f "PostgreSQL" "PG:user=docker dbname=usbrouting password=docker" "/docker-entrypoint-initdb.d/calles.geojson" -lco GEOMETRY_NAME=the_geom -lco FID=id -lco PRECISION=no -nln calles -overwrite
+
+# ogr2ogr -f "PostgreSQL" "PG:user=docker dbname=usbrouting password=docker" "/docker-entrypoint-initdb.d/campus.shp" -lco GEOMETRY_NAME=the_geom -lco FID=id -lco PRECISION=no -nln campus -overwrite
+# ogr2ogr -f "PostgreSQL" "PG:user=docker dbname=usbrouting password=docker" "/docker-entrypoint-initdb.d/calles.shp" -lco GEOMETRY_NAME=the_geom -lco FID=id -lco PRECISION=no -nln calles -overwrite
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
     alter table calles add source int4;
