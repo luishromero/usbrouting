@@ -9,13 +9,13 @@ This app was inspired by the solution proposed by [thegisdev](https://github.com
 This web application has been dockerized, here you will find the correspondent docker compose file in the root folder, from there, run the following command:
 
 ```
-docker compose up -d
+docker-compose up -d
 ```
 
 For stop the services, run:
 
 ```
-docker compose down
+docker-compose down
 ```
 
 The web application is available in localhost:8181/comollegousb.html
