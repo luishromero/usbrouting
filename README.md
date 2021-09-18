@@ -18,7 +18,7 @@ For stop the services, run:
 docker-compose down
 ```
 
-The web application is available in localhost:8181/comollegousb.html
+The web application is now available in localhost:8181/comollegousb.html
 
 #### Workarround
 
